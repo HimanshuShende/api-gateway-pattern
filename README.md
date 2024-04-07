@@ -1,2 +1,1 @@
-Microservice Baed Application 
-API gateway pattern
+Microservice Baed Application: API gateway pattern
