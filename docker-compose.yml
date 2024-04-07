@@ -1,4 +1,4 @@
-version: '1'
+version: '2'
 services:
   service-a:
     build: 
@@ -6,6 +6,8 @@ services:
       dockerfile: Dockerfile
     ports: 
       - 3001:3001
+    environment:
+      - PORT=3001
 
   service-b:
     build:
@@ -13,6 +15,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - 3002:3002
+    environment:
+      - PORT=3002
 
   api-gateway:
     build: 
@@ -20,6 +24,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - 3000:3000
+    environment:
+      - SERVICE_A_URL=http://service-a:3001
+      - SERVICE_B_URL=http://service-b:3002
+      - PORT=3000
     depends_on:
       - service-a
       - service-b
